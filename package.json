@@ -11,8 +11,6 @@
     "report": "poi build --bundle-report",
     "serve": "serve dist --single",
     "start": "node server.js"
-    }
-
   },
   "babel": {
     "presets": [
