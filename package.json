@@ -10,7 +10,7 @@
     "build": "poi build",
     "report": "poi build --bundle-report",
     "serve": "serve dist --single",
-    "start": "serve dist"
+    "start": "poi"
   },
   "babel": {
     "presets": [
