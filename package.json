@@ -10,7 +10,7 @@
     "build": "poi build",
     "report": "poi build --bundle-report",
     "serve": "serve dist --single",
-    "start": "poi"
+    "start": "node server.js"
   },
   "babel": {
     "presets": [
@@ -22,6 +22,7 @@
     "email": "andrewmundy@gmail.com"
   },
   "dependencies": {
+    "express": "^4.16.2",s
     "offline-plugin": "^4.8.0",
     "normalize.css": "^7.0.0",
     "object-assign": "^4.1.1",
