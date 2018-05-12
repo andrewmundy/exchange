@@ -55,7 +55,7 @@
         this.exchange = "$" + Math.round(this.us * this.rate) + " 🇺🇸"
       },
       money: function(){
-        let url = "http://data.fixer.io/api/latest?access_key=c98b600783e240ffe856deaaa0747493"
+        let url = "https://data.fixer.io/api/latest?access_key=c98b600783e240ffe856deaaa0747493"
         let that = this
         fetch(url)
           .then((resp) => resp.json())
@@ -66,7 +66,7 @@
       location: function(){
         const ip = '134.201.250.155'
         const access_key = 'e1f8abf46f10cca826e52a483d711dac'
-        const url = 'http://api.ipstack.com/' + ip + '?access_key=' + access_key
+        const url = 'https://api.ipstack.com/' + ip + '?access_key=' + access_key
         if ("geolocation" in navigator) {
           navigator.geolocation.getCurrentPosition(function(position) {
           let latitude = position.coords.latitude
