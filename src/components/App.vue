@@ -67,12 +67,13 @@
         const ip = '134.201.250.155'
         const access_key = 'e1f8abf46f10cca826e52a483d711dac'
         const url = 'https://api.ipstack.com/' + ip + '?access_key=' + access_key
+
         if ("geolocation" in navigator) {
           navigator.geolocation.getCurrentPosition(function(position) {
           let latitude = position.coords.latitude
           let longitude = position.coords.longitude
           var img = new Image();
-          img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
+          img.src = "https://maps.googleapis.com/maps/api/js?key=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=true";
           output.appendChild(img);
         })
         } else {
