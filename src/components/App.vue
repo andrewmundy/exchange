@@ -92,7 +92,7 @@
 
       navigator.geolocation.getCurrentPosition(success, error, options);
 
-      // this.location()
+      this.location()
       // this.money()
     },
     updated:function(){
@@ -145,13 +145,13 @@
             // let url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=14.728205,102.224386&result_type=country&key=AIzaSyAc9BvmSaga2NJwzDn7iSn_Oz6I7Th3oIE"
             // console.log(url)
 
-          // fetch(url)
-          //   .then((resp) => resp.json())
-          //   .then(function(data){
-          //     that.fromCountryName = data.results[0].address_components[0].long_name
-          //     that.fromCountryCode = data.results[0].address_components[0].short_name
-          //     console.log(that.fromCountryName)
-          //   })
+          fetch(url)
+            .then((resp) => resp.json())
+            .then(function(data){
+              that.fromCountryName = data.results[0].address_components[0].long_name
+              that.fromCountryCode = data.results[0].address_components[0].short_name
+              console.log(that.fromCountryName)
+            })
           // console.log(latitude + " " + longitude)
           // let img = new Image();
           // img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=400x120&sensor=false";
