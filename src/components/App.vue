@@ -8,14 +8,14 @@
           <div class="inputs">
             Hi 👋 you are currently in {{fromCountryName}}
               <input 
-              onclick="document.getElementById('from').value = ''"
-                id="from"
+              onclick="document.getElementById('to').value = ''"
+                id="to"
                 type="tel"
-                v-model="fromValue"    
+                v-model="toValue"    
                 onfocus="if(this.value == 'value') { this.value = ''; }"
               >
-              <select v-model="fromCountry">
-                <option>{{fromCountry}}</option>
+              <select v-model="toCountry">
+                <option>{{toCountry}}</option>
                 <option>USD</option>
                 <option>THB</option>
                 <option>LKP</option>
@@ -25,12 +25,12 @@
           <div class="contents">
             <div class="inputs">
               <input
-                type="number"
                 min="0"
                 step="any"
-                v-model="toValue"
+                v-model="fromValue"
               >
-              <select v-model="toCountry">
+              <select v-model="fromCountry">
+                <option>{{fromCountry}}</option>
                 <option>THB</option>
                 <option>USD</option>
                 <option>LAK</option>
@@ -54,15 +54,15 @@
     data: function(){
 			return{
         fromValue:1,
+        toCountry:'IDR',
+        toCountryName:'',
+        toCountryFlag:'',
+        toCountryCode:'',
+        toValue:0,
         fromCountry:'USD',
         fromCountryName:'',
         fromCountryFlag:'',
         fromCountryCode:'',
-        toValue:0,
-        toCountry:'THB',
-        toCountryName:'',
-        toCountryFlag:'',
-        toCountryCode:'',
 				value: 'hello',
         rate:100,
         lat:'',
@@ -70,45 +70,29 @@
 			}
     },
     mounted:function(){
-      var https = require('https')
-      // var tls = require('tls')
-      var options = {
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 0
-      };
-
-      function success(pos) {
-        var crd = pos.coords;
-
-        alert('Your current position is:');
-        alert(`Latitude : ${crd.latitude}`);
-        alert(`Longitude: ${crd.longitude}`);
-        alert(`More or less ${crd.accuracy} meters.`);
-      }
-
-      function error(err) {
-        alert(`ERROR(${err.code}): ${err.message}`);
-      }
-
-      navigator.geolocation.getCurrentPosition(success, error, options);
-
-      // this.location()
+      this.location()
       // this.money()
+    },
+    watch:{
+      toValue:function(){
+        this.calculations()
+        console.log("edit the input")
+      }
+      // toCountry:function(){
+      //   this.money()
+      //   console.log(this.rate)
+      // },
+      // fromCountry:function(){
+      //   this.money()
+      //   console.log(this.rate)
+      // }
     },
     updated:function(){
     },
     methods:{
-      // math(){
-      //   let that = this
-
-      //   //sample data
-      //   that.fromValue = 
-      //   that.toValue = 
-      //   that.rate = 
-
-      //   that.fromValue * that.rate
-      // },
+      calculations(){
+        this.fromValue = this.toValue / this.rate
+      },
       money: function(){
         let from = this.fromCountry
         let to = this.toCountry
@@ -119,8 +103,7 @@
         fetch(countries)
           .then((resp) => resp.json())
           .then(function(data){
-            that.fromCountry = data.results[that.fromCountryCode].currencyId
-            console.log(that.fromCountry)
+            that.toCountry = data.results[that.fromCountryCode].currencyId
           })
         fetch(convert)
           .then((resp) => resp.json())
@@ -137,29 +120,32 @@
         // const ip = '134.201.250.155'
         // const access_key = 'e1f8abf46f10cca826e52a483d711dac'
         // const url = 'http://api.ipstack.com/' + ip + '?access_key=' + access_key
-        alert(that.toValue)
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
-            that.lat = position.coords.latitude
-            that.long = position.coords.longitude
-            let url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + that.lat + "," + that.long + "&result_type=country&key=AIzaSyAc9BvmSaga2NJwzDn7iSn_Oz6I7Th3oIE"
-            // let url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=14.728205,102.224386&result_type=country&key=AIzaSyAc9BvmSaga2NJwzDn7iSn_Oz6I7Th3oIE"
-            // console.log(url)
+            
+        //Bali//
+          that.lat = -8.715907
+          that.long = 115.168423
 
-          // fetch(url)
-          //   .then((resp) => resp.json())
-          //   .then(function(data){
-          //     that.fromCountryName = data.results[0].address_components[0].long_name
-          //     that.fromCountryCode = data.results[0].address_components[0].short_name
-          //     console.log(that.fromCountryName)
-          //   })
-          // console.log(latitude + " " + longitude)
-          // let img = new Image();
-          // img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=400x120&sensor=false";
-          // map.appendChild(img);
+        //CURRENT LOCATION//
+          // that.lat = position.coords.latitude
+          // that.long = position.coords.longitude
+          let url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + that.lat + "," + that.long + "&result_type=country&key=AIzaSyAc9BvmSaga2NJwzDn7iSn_Oz6I7Th3oIE"
+
+          fetch(url)
+            .then((resp) => resp.json())
+            .then(function(data){
+              that.toCountryName = data.results[0].address_components[0].long_name
+              that.toCountryCode = data.results[0].address_components[0].short_name
+              // console.log(that.fromCountryName)
+              that.money()
+            })
+          let img = new Image();
+          img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + that.lat + "," + that.long + "&zoom=13&size=400x120&sensor=false";
+          map.appendChild(img);
         },function(error){
           alert("oops timeout")
-        },{timeout:4000})
+        })
         }
       }
     }
