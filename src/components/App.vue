@@ -6,10 +6,11 @@
         <div class="info">
           <div class="inputs">
               <input 
-                type="number"
-                min="0"
-                step="1"
+              onclick="document.getElementById('from').value = ''"
+                id="from"
+                type="tel"
                 v-model="fromValue"    
+                onfocus="if(this.value == 'value') { this.value = ''; }"
               >
               <select v-model="fromCountry">
                 <option>{{fromCountry}}</option>
@@ -65,53 +66,50 @@
     },
     mounted:function(){
       this.location()
-      this.money()
-      this.assignCountry()
-      // this.total()
-    },
-    updated:function(){
       // this.money()
     },
-    watch:{
-      fromCountry(){
-        this.money()
-      },
-      toCountry(){
-        this.money()
-      }
+    updated:function(){
     },
     methods:{
-      assignCountry: function(){
-        this.country = "THB"
-      },
-      money: function (){
-        this.from = "$" + this.from
+      math(){
+        let that = this
+
+        //sample data
+        that.fromValue = 
+        that.toValue = 
+        that.rate = 
+
+        that.fromValue * that.rate
       },
       money: function(){
+        var https = require('https')
         let from = this.fromCountry
         let to = this.toCountry
-        let convert = "https://free.currencyconverterapi.com/api/v5/convert?q="+from+"_"+to+"&compact=ultra"
-        let countries = "https://free.currencyconverterapi.com/api/v5/countries"
+        
+        let convert = "https://www.currencyconverterapi.com/api/v5/convert?q="+from+"_"+to+"&compact=ultra&apiKey=d996c6d6-ec4a-46d0-ad17-f9eba3092eb9"
+        let countries = "https://www.currencyconverterapi.com/api/v5/countries?apiKey=d996c6d6-ec4a-46d0-ad17-f9eba3092eb9"
         let that = this
         fetch(countries)
           .then((resp) => resp.json())
           .then(function(data){
             that.fromCountry = data.results[that.fromCountryCode].currencyId
-            console.log(that.fromCountry)
+            // console.log(that.fromCountry)
           })
         fetch(convert)
           .then((resp) => resp.json())
           .then(function(data){
+            console.log(data)
             that.rate = data[from+"_"+to]
             that.toValue = that.fromValue * that.rate
           })
         that.toValue = that.fromValue * that.rate.toFixed(2)
+        console.log(that.toValue)
       },
       location: function(){
         let that = this
         const ip = '134.201.250.155'
         const access_key = 'e1f8abf46f10cca826e52a483d711dac'
-        const url = 'http://api.ipstack.com/' + ip + '?access_key=' + access_key
+        const url = 'https://api.ipstack.com/' + ip + '?access_key=' + access_key
         if ("geolocation" in navigator) {
           navigator.geolocation.getCurrentPosition(function(position) {
           let latitude = position.coords.latitude
@@ -131,7 +129,7 @@
             that.fromCountryCode = data.country_code
             that.fromCountryFlag = data.location.country_flag_emoji
 
-            console.log(data)
+            // console.log(data)
           })
       }
     }
@@ -142,7 +140,8 @@
 <style type="text/scss">
 body{
   font-family: Arial, Helvetica, sans-serif;
-  background-image: linear-gradient(to top, #00c6fb 0%, #005bea 100%);
+  /* background-image: linear-gradient(to top, #00c6fb 0%, #005bea 100%); */
+  background:#8C9AFE;
   height:100vh;
 }
 .info{
