@@ -5,6 +5,7 @@
       <div id="container">
         <div class="info">
           <div class="inputs">
+            Hi 👋 you are currently in {{fromCountryName}}
               <input 
               onclick="document.getElementById('from').value = ''"
                 id="from"
@@ -67,7 +68,7 @@
     },
     mounted:function(){
       this.location()
-      
+      this.money()
       // this.money()
     },
     updated:function(){
@@ -95,7 +96,7 @@
           .then((resp) => resp.json())
           .then(function(data){
             that.fromCountry = data.results[that.fromCountryCode].currencyId
-            // console.log(that.fromCountry)
+            console.log(that.fromCountry)
           })
         fetch(convert)
           .then((resp) => resp.json())
@@ -116,23 +117,26 @@
           navigator.geolocation.getCurrentPosition(function(position) {
           let latitude = position.coords.latitude
           let longitude = position.coords.longitude
-          var img = new Image();
-          img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=400x120&sensor=false";
-          map.appendChild(img);
+          // let url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&result_type=country&key=AIzaSyAc9BvmSaga2NJwzDn7iSn_Oz6I7Th3oIE"
+          let url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=14.728205,102.224386&result_type=country&key=AIzaSyAc9BvmSaga2NJwzDn7iSn_Oz6I7Th3oIE"
+          // console.log(url)
+
+          fetch(url)
+            .then((resp) => resp.json())
+            .then(function(data){
+              that.fromCountryName = data.results[0].address_components[0].long_name
+              that.fromCountryCode = data.results[0].address_components[0].short_name
+              console.log(that.fromCountryName)
+            })
+          // console.log(latitude + " " + longitude)
+          // let img = new Image();
+          // img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=400x120&sensor=false";
+          // map.appendChild(img);
         })
         } else {
           console.log("oops")
         }
 
-        // fetch(url)
-        //   .then((resp) => resp.json())
-        //   .then(function(data){
-        //     that.fromCountryName = data.country_name
-        //     that.fromCountryCode = data.country_code
-        //     that.fromCountryFlag = data.location.country_flag_emoji
-
-        //     // console.log(data)
-        //   })
       }
     }
   }
