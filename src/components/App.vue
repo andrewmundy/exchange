@@ -45,7 +45,8 @@
   </div>
 </template>
 
-<script>
+<script >
+
   export default {
     name: 'app',
     data: function(){
@@ -66,6 +67,7 @@
     },
     mounted:function(){
       this.location()
+      
       // this.money()
     },
     updated:function(){
@@ -107,9 +109,9 @@
       },
       location: function(){
         let that = this
-        const ip = '134.201.250.155'
-        const access_key = 'e1f8abf46f10cca826e52a483d711dac'
-        const url = 'https://api.ipstack.com/' + ip + '?access_key=' + access_key
+        // const ip = '134.201.250.155'
+        // const access_key = 'e1f8abf46f10cca826e52a483d711dac'
+        // const url = 'http://api.ipstack.com/' + ip + '?access_key=' + access_key
         if ("geolocation" in navigator) {
           navigator.geolocation.getCurrentPosition(function(position) {
           let latitude = position.coords.latitude
@@ -122,15 +124,15 @@
           console.log("oops")
         }
 
-        fetch(url)
-          .then((resp) => resp.json())
-          .then(function(data){
-            that.fromCountryName = data.country_name
-            that.fromCountryCode = data.country_code
-            that.fromCountryFlag = data.location.country_flag_emoji
+        // fetch(url)
+        //   .then((resp) => resp.json())
+        //   .then(function(data){
+        //     that.fromCountryName = data.country_name
+        //     that.fromCountryCode = data.country_code
+        //     that.fromCountryFlag = data.location.country_flag_emoji
 
-            // console.log(data)
-          })
+        //     // console.log(data)
+        //   })
       }
     }
   }
