@@ -3,6 +3,7 @@
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=0" />
 
     <title><%= htmlWebpackPlugin.options.title %></title>
@@ -20,11 +21,8 @@
         for (var file of chunk.files) {
           if (file.match(/\.(js|css)$/)) { %>
     <link rel="<%= chunk.initial?'preload':'prefetch' %>" href="<%= htmlWebpackPlugin.files.publicPath + file %>" as="<%= file.match(/\.css$/)?'style':'script' %>"><% }}} %>
-
-
   </head>
   <body>
-
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>

@@ -4,6 +4,7 @@
       <img class="bg2" src="./bg1.svg"> -->
       <div id="container">
         <div class="info">
+
           <div class="inputs">
             Hi 👋 you are currently in {{fromCountryName}}
               <input 
@@ -46,44 +47,45 @@
   </div>
 </template>
 
-<script >
+<script>
 
   export default {
     name: 'app',
     data: function(){
 			return{
         fromValue:1,
-        fromCountry:"USD",
-        fromCountryName:"",
-        fromCountryFlag:"",
-        fromCountryCode:"",
+        fromCountry:'USD',
+        fromCountryName:'',
+        fromCountryFlag:'',
+        fromCountryCode:'',
         toValue:0,
-        toCountry:"THB",
-        toCountryName:"",
-        toCountryFlag:"",
-        toCountryCode:"",
+        toCountry:'THB',
+        toCountryName:'',
+        toCountryFlag:'',
+        toCountryCode:'',
 				value: 'hello',
         rate:100,
+        lat:'',
+        long:''
 			}
     },
     mounted:function(){
       this.location()
-      this.money()
       // this.money()
     },
     updated:function(){
     },
     methods:{
-      math(){
-        let that = this
+      // math(){
+      //   let that = this
 
-        //sample data
-        that.fromValue = 
-        that.toValue = 
-        that.rate = 
+      //   //sample data
+      //   that.fromValue = 
+      //   that.toValue = 
+      //   that.rate = 
 
-        that.fromValue * that.rate
-      },
+      //   that.fromValue * that.rate
+      // },
       money: function(){
         var https = require('https')
         let from = this.fromCountry
@@ -113,30 +115,30 @@
         // const ip = '134.201.250.155'
         // const access_key = 'e1f8abf46f10cca826e52a483d711dac'
         // const url = 'http://api.ipstack.com/' + ip + '?access_key=' + access_key
-        if ("geolocation" in navigator) {
+        alert(that.toValue)
+        if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
-          let latitude = position.coords.latitude
-          let longitude = position.coords.longitude
-          // let url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&result_type=country&key=AIzaSyAc9BvmSaga2NJwzDn7iSn_Oz6I7Th3oIE"
-          let url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=14.728205,102.224386&result_type=country&key=AIzaSyAc9BvmSaga2NJwzDn7iSn_Oz6I7Th3oIE"
-          // console.log(url)
+            that.lat = position.coords.latitude
+            that.long = position.coords.longitude
+            let url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + that.lat + "," + that.long + "&result_type=country&key=AIzaSyAc9BvmSaga2NJwzDn7iSn_Oz6I7Th3oIE"
+            // let url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=14.728205,102.224386&result_type=country&key=AIzaSyAc9BvmSaga2NJwzDn7iSn_Oz6I7Th3oIE"
+            // console.log(url)
 
-          fetch(url)
-            .then((resp) => resp.json())
-            .then(function(data){
-              that.fromCountryName = data.results[0].address_components[0].long_name
-              that.fromCountryCode = data.results[0].address_components[0].short_name
-              console.log(that.fromCountryName)
-            })
+          // fetch(url)
+          //   .then((resp) => resp.json())
+          //   .then(function(data){
+          //     that.fromCountryName = data.results[0].address_components[0].long_name
+          //     that.fromCountryCode = data.results[0].address_components[0].short_name
+          //     console.log(that.fromCountryName)
+          //   })
           // console.log(latitude + " " + longitude)
           // let img = new Image();
           // img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=400x120&sensor=false";
           // map.appendChild(img);
-        })
-        } else {
-          console.log("oops")
+        },function(error){
+          alert("oops")
+        },{timeout:4000})
         }
-
       }
     }
   }
@@ -148,7 +150,7 @@ body{
   font-family: Arial, Helvetica, sans-serif;
   /* background-image: linear-gradient(to top, #00c6fb 0%, #005bea 100%); */
   background:#8C9AFE;
-  height:100vh;
+  height:300px;
 }
 .info{
   padding:2rem;
