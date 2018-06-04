@@ -70,7 +70,29 @@
 			}
     },
     mounted:function(){
-      this.location()
+      var https = require('https')
+      var options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+      };
+
+      function success(pos) {
+        var crd = pos.coords;
+
+        alert('Your current position is:');
+        alert(`Latitude : ${crd.latitude}`);
+        alert(`Longitude: ${crd.longitude}`);
+        alert(`More or less ${crd.accuracy} meters.`);
+      }
+
+      function error(err) {
+        alert(`ERROR(${err.code}): ${err.message}`);
+      }
+
+      navigator.geolocation.getCurrentPosition(success, error, options);
+
+      // this.location()
       // this.money()
     },
     updated:function(){
@@ -87,7 +109,6 @@
       //   that.fromValue * that.rate
       // },
       money: function(){
-        var https = require('https')
         let from = this.fromCountry
         let to = this.toCountry
         
@@ -136,7 +157,7 @@
           // img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=400x120&sensor=false";
           // map.appendChild(img);
         },function(error){
-          alert("oops")
+          alert("oops timeout")
         },{timeout:4000})
         }
       }
