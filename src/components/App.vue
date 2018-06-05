@@ -3,7 +3,7 @@
       <!-- <img class="bg" src="./bg2.svg">
       <img class="bg2" src="./bg1.svg"> -->
       <div id="container">
-        <img class="logo" src="/logo.png">
+        <img class="logo" src="./logo.png">
         <div class="info">
 
           <div class="inputs">
@@ -141,7 +141,7 @@
               that.money()
             })
           let img = new Image();
-          img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + that.lat + "," + that.long + "&zoom=13&size=400x120&sensor=false";
+          img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + that.lat + "," + that.long + "&zoom=13&size=400x120&sensor=false&key=AIzaSyAc9BvmSaga2NJwzDn7iSn_Oz6I7Th3oIE";
           map.appendChild(img);
         },function(error){
           alert("oops timeout")
