@@ -3,10 +3,13 @@
       <!-- <img class="bg" src="./bg2.svg">
       <img class="bg2" src="./bg1.svg"> -->
       <div id="container">
+        <img class="logo" src="/logo.png">
         <div class="info">
 
           <div class="inputs">
-            Hi 👋 you are currently in {{fromCountryName}}
+              <p>
+                you are currently in {{toCountryName}}  
+              </p>
               <input 
               onclick="document.getElementById('to').value = ''"
                 id="to"
@@ -16,7 +19,7 @@
               >
               <select v-model="toCountry">
                 <option>{{toCountry}}</option>
-                <option>USD</option>
+                <option>IDR</option>
                 <option>THB</option>
                 <option>LKP</option>
               </select>
@@ -41,14 +44,11 @@
           </div>
 
         </div>
-            <!-- <span>{{fromCountryFlag}}</span> -->
           <div id="map"></div>
     </div>
   </div>
 </template>
-
 <script>
-
   export default {
     name: 'app',
     data: function(){
@@ -160,8 +160,12 @@ body{
   background:#8C9AFE;
   height:300px;
 }
+.logo{
+  padding:1rem;
+  width:80px;
+}
 .info{
-  padding:2rem;
+  /* padding:2rem; */
 }
 
 .inputs input{
@@ -198,13 +202,15 @@ select{
   height: 120px;
 }
 #map > img{
-  border-radius: 0 0 10px 10px;
+  /* border-radius: 0 0 10px 10px; */
   margin-top:1rem;
 
 }
 .inputs{
-text-align: left;
   padding:0.2rem;
+}
+.inputs p {
+  color:grey;
 }
 #app{
   display:flex;
@@ -215,9 +221,9 @@ text-align: left;
   width:400px;
   text-align: center;
   background: white;
-  box-shadow: 0px 20px 70px #0006;
+  box-shadow: 0px 20px 70px #0002;
   /* padding: 3rem 2rem 0 2rem; */
-  border-radius: 0 0 10px 10px;
+  /* border-radius: 0 0 10px 10px; */
   position: fixed;
   top:0;
 }
