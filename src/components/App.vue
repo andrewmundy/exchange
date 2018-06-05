@@ -144,7 +144,7 @@
               that.money()
             })
           let img = new Image();
-          img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + that.lat + "," + that.long + "&zoom=13&size=400x100&sensor=false&key=AIzaSyAc9BvmSaga2NJwzDn7iSn_Oz6I7Th3oIE";
+          img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + that.lat + "," + that.long + "&zoom=13&size=400x120&sensor=false&key=AIzaSyAc9BvmSaga2NJwzDn7iSn_Oz6I7Th3oIE";
           map.appendChild(img);
         },function(error){
           alert("oops timeout")
@@ -164,8 +164,8 @@ body{
   height:300px;
 }
 .logo{
-  padding-top:1rem;
-  width:60px;
+  padding:1rem;
+  width:80px;
 }
 .info{
   /* padding:2rem; */
