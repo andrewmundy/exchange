@@ -68,7 +68,11 @@ export default {
   },
   created(){
     this.findLocation()
-    this.toCountryCurrency = localStorage.getItem('toCountry')
+    if (!localStorage.getItem('toCountry')){
+      this.toCountryCurrency = 'USD'
+    } else {
+      this.toCountryCurrency = localStorage.getItem('toCountry')
+    }
   },
   mounted(){
     },
@@ -94,7 +98,7 @@ export default {
       this.countryFromCountryCode()
       let store = this.toCountryCurrency
       localStorage.setItem('toCountry', store)
-      console.log(localStorage.getItem('toCountry'))
+      // console.log(localStorage.getItem('toCountry'))
     },
     located:function(){
       this.createMap()
@@ -148,13 +152,13 @@ export default {
       let from = that.fromCountryCurrency
       let to = that.toCountryCurrency
       let convert = "https://www.currencyconverterapi.com/api/v5/convert?q="+to+"_"+from+"&compact=ultra&apiKey=d996c6d6-ec4a-46d0-ad17-f9eba3092eb9"
-      console.log(convert)
+      // console.log(convert)
 
       fetch(convert)
         .then((resp) => resp.json())
         .then(function(data){
           that.rate = data[to+"_"+from]
-          console.log("loaded rate " + that.rate)
+          // console.log("loaded rate " + that.rate)
           // that.fromValue = that.rate
           that.popFromValue()
         })
