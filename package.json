@@ -26,7 +26,9 @@
     "offline-plugin": "^4.8.0",
     "normalize.css": "^7.0.0",
     "object-assign": "^4.1.1",
-    "promise-polyfill": "^6.0.2"
+    "promise-polyfill": "^6.0.2",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.3"
   },
   "devDependencies": {
     "poi": "^9.0.0",

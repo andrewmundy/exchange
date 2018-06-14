@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#ver:6/4/2018, 7:54:29 PM
+#ver:6/5/2018, 7:15:43 AM
 #plugin:4.9.1
 
 CACHE:
@@ -7,11 +7,11 @@ CACHE:
 /client.bdfb5fba.js
 /manifest.95292176.js
 /client.a74b6159.css
-/favicon1.ico
 /favicon.ico
-/icons/android-chrome-192x192.png
-/icons/android-chrome-512x512.png
 /manifest.json
+/favicon1.ico
+/icons/android-chrome-512x512.png
+/icons/android-chrome-192x192.png
 /
 
 NETWORK:
