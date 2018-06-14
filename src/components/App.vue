@@ -68,6 +68,7 @@ export default {
   },
   created(){
     this.findLocation()
+    this.toCountryCurrency = localStorage.getItem('toCountry')
   },
   mounted(){
     },
@@ -91,6 +92,9 @@ export default {
     toCountryCurrency:function(){
       // this.fromValue = 0
       this.countryFromCountryCode()
+      let store = this.toCountryCurrency
+      localStorage.setItem('toCountry', store)
+      console.log(localStorage.getItem('toCountry'))
     },
     located:function(){
       this.createMap()
