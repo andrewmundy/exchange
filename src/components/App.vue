@@ -14,12 +14,14 @@
           >
           <select v-model="fromCountryCurrency">
             <option>{{fromCountryCurrency}}</option>
-            <option value="USD">United States dollar</option>
-            <option value="IDR">Indonesian rupiah</option>
-            <option value="THB">Thai baht</option>
-            <option value="LAK">Lao kip</option>
-            <option value="GBP">British pound</option>
-            <option value="EUR">European euro</option>
+            <option value="USD">🇺🇸United States dollar</option>
+            <option value="IDR">🇮🇩Indonesian rupiah</option>
+            <option value="THB">🇹🇭Thai baht</option>
+            <option value="LAK">🇱🇦Lao kip</option>
+            <option value="GBP">🇬🇧British pound</option>
+            <option value="EUR">🇪🇺European euro</option>
+            <option value="CUP">🇨🇺Cuban peso</option>
+            <option value="SWE">🇸🇪Swedish krona</option>
           </select>
         </div>
 
@@ -30,12 +32,14 @@
           >
           <select v-model="toCountryCurrency">
             <option>{{toCountryCurrency}}</option>
-            <option value="USD">United States dollar</option>
-            <option value="IDR">Indonesian rupiah</option>
-            <option value="THB">Thai baht</option>
-            <option value="LAK">Lao kip</option>
-            <option value="GBP">British pound</option>
-            <option value="EUR">European euro</option>
+            <option value="USD">🇺🇸United States dollar</option>
+            <option value="IDR">🇮🇩Indonesian rupiah</option>
+            <option value="THB">🇹🇭Thai baht</option>
+            <option value="LAK">🇱🇦Lao kip</option>
+            <option value="GBP">🇬🇧British pound</option>
+            <option value="EUR">🇪🇺European euro</option>
+            <option value="CUP">🇨🇺Cuban peso</option>
+            <option value="SWE">🇸🇪Swedish krona</option>
           </select>
         </div>
       </div>
@@ -186,8 +190,10 @@ body {
   display:flex;
   justify-content: center;
   align-content: center;
+  height: 100vh;
 }
 #container{
+  overflow: hidden;
   box-shadow: 0px 20px 70px #0002;
   text-align: center;
   background:white;
