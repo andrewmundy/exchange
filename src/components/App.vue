@@ -21,7 +21,13 @@
             <option value="GBP">🇬🇧British pound</option>
             <option value="EUR">🇪🇺European euro</option>
             <option value="CUP">🇨🇺Cuban peso</option>
-            <option value="SWE">🇸🇪Swedish krona</option>
+            <option value="SEK">🇸🇪Swedish krona</option>
+            <option value="HKD">🇨🇳Hong Kong dollar</option>
+            <option value="AUD">🇦🇺Australian dollar</option>
+            <option value="CAD">🇨🇦Canadian dollar</option>
+            <option value="JPY">🇯🇵Japanese yen</option>
+            <option value="MXN">🇲🇽Mexican peso</option>
+            
           </select>
         </div>
 
@@ -39,7 +45,12 @@
             <option value="GBP">🇬🇧British pound</option>
             <option value="EUR">🇪🇺European euro</option>
             <option value="CUP">🇨🇺Cuban peso</option>
-            <option value="SWE">🇸🇪Swedish krona</option>
+            <option value="SEK">🇸🇪Swedish krona</option>
+            <option value="HKD">🇨🇳Hong Kong dollar</option>
+            <option value="AUD">🇦🇺Australian dollar</option>
+            <option value="CAD">🇨🇦Canadian dollar</option>
+            <option value="JPY">🇯🇵Japanese Yen</option>
+            <option value="MXN">🇲🇽Mexican peso</option>
           </select>
         </div>
       </div>
@@ -212,6 +223,14 @@ body {
     *{
       margin:2px;
     }
+    div{
+      *{
+          font-size:1rem;
+      }
+      select{
+        width:6rem;
+      }
+    } 
   }
   #map{
     height: 120px;
